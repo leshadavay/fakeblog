@@ -1,0 +1,124 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    {% if title %}
+    <title>Django Blog - {{title}}</title>
+    {%else %}
+    <title>Django Blog</title>
+    {%endif%}
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'blog/style.css' %}"
+    />
+    <script
+      src="{% static 'blog/jquery.min.js' %}"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="page" id="main-container">
+      <nav id="main-nav" role="navigation">
+        <a href="#" id="menu-close-btn" class="js-nav-toggle nav-toggle active"
+          ><i></i
+        ></a>
+        <div id="nav-toggle" class="js-fullheight table" style="height: 625px">
+          <div class="img" style="background-image: url(images/bg_3.jpg)"></div>
+          <div class="table-cell js-fullheight" style="height: 625px">
+            <div class="row no-gutters">
+              <div class="col-md-12 text-center">
+                <h1 class="mb-4">
+                  <a href="{% url 'blog-home' %}" class="logo">Fake Blog</a>
+                </h1>
+                <ul>
+                  <li class="active">
+                    <a href="{% url 'blog-home' %}"><span>Home</span></a>
+                  </li>
+                  <li>
+                    <a href="{% url 'blog-about'%}"><span>About</span></a>
+                  </li>
+                  <li>
+                    <a href="blog.html"><span>Blog</span></a>
+                  </li>
+                  <li>
+                    <a href="contact.html"><span>Contact</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="page">
+        <header style="background: black">
+          <div
+            class="container d-flex justify-content-between align-items-center"
+          >
+            <div class="navbar-brand">
+              <a class="logo" href="{% url 'blog-home' %}">Fake Blog</a>
+            </div>
+            <div
+              id="menu-open-btn"
+              style="width: 40px; height: 40px; cursor: pointer"
+            >
+              <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
+            </div>
+          </div>
+        </header>
+        <section class="hero-wrap js-fullheight" style="height: 625px">
+          <div class="container px-0">
+            <div
+              class="no-gutters slider-text js-fullheight"
+              data-scrollax-parent="true"
+              style="padding-top: 80px"
+            >
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#menu-open-btn").click(function () {
+          $("#main-container").toggleClass("menu-show");
+          setTimeout(function () {
+            $("#menu-close-btn").toggleClass("show");
+          }, 800);
+        });
+
+        $("#menu-close-btn").click(function () {
+          $(this).toggleClass("show");
+          $("#main-container").toggleClass("menu-show");
+        });
+      });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

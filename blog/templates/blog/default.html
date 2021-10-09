@@ -25,6 +25,11 @@
       type="text/css"
       href="{% static 'blog/style.css' %}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'blog/postcard.css' %}"
+    />
     <script
       src="{% static 'blog/jquery.min.js' %}"
       crossorigin="anonymous"
@@ -79,12 +84,11 @@
             </div>
           </div>
         </header>
-        <section class="hero-wrap js-fullheight" style="height: 625px">
-          <div class="container px-0">
+        <section class="dark hero-wrap js-fullheight" style="height: 625px">
+          <div class="container px-0" style="padding-top: 80px">
             <div
               class="no-gutters slider-text js-fullheight"
               data-scrollax-parent="true"
-              style="padding-top: 80px"
             >
               {% block content %}{% endblock %}
             </div>

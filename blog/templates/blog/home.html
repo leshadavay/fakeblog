@@ -1,12 +1,32 @@
-{%extends "blog/default.html" %} {%block content%} {%for post in posts%}
-<article class="media content-section">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">{{ post.author }}</a>
-      <small class="text-muted">{{ post.date_posted }}</small>
+{%extends "blog/default.html" %} {%block content%}
+
+<div class="container py-4">
+  {%for post in posts%}
+  <article class="postcard dark blue">
+    <a class="postcard__img_link" href="#">
+      <img class="postcard__img" src=" " alt="Image Title" />
+    </a>
+    <div class="postcard__text">
+      <h1 class="postcard__title blue"><a href="#">{{ post.title }}</a></h1>
+      <div class="postcard__subtitle small">
+        <time datetime="2020-05-25 12:00:00">
+          <i class="fas fa-calendar-alt mr-2"></i> {{ post.author }} | {{
+          post.date_posted | date:"F d, Y " }}
+        </time>
+      </div>
+      <div class="postcard__bar"></div>
+      <div class="postcard__preview-txt">{{ post.content }}</div>
+      <ul class="postcard__tagbox">
+        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+        <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+        <li class="tag__item play blue">
+          <a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+        </li>
+      </ul>
     </div>
-    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.content }}</p>
-  </div>
-</article>
-{%endfor%} {%endblock%}
+  </article>
+
+  {%endfor%}
+</div>
+
+{%endblock%}

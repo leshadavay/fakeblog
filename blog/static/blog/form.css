@@ -1,0 +1,16 @@
+.content-section form input {
+  background-color: black;
+  color: #ababab;
+  border: 1px solid #58585894;
+}
+
+.content-section form input:focus {
+  background-color: #070707;
+  box-shadow: 0 0 5px 0 rgb(37 210 246 / 50%);
+  outline: none;
+  color: #ababab;
+}
+
+.content-section form label {
+  color: #ababab;
+}

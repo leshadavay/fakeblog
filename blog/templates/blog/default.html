@@ -23,7 +23,12 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'blog/style.css' %}"
+      href="{% static 'blog/header.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'blog/form.css' %}"
     />
     <link
       rel="stylesheet"
@@ -35,7 +40,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+  <body class="dark">
     <div class="page" id="main-container">
       <nav id="main-nav" role="navigation">
         <a href="#" id="menu-close-btn" class="js-nav-toggle nav-toggle active"
@@ -57,7 +62,7 @@
                     <a href="{% url 'blog-about'%}"><span>About</span></a>
                   </li>
                   <li>
-                    <a href="blog.html"><span>Blog</span></a>
+                    <a href="{% url 'blog-home' %}"><span>Blog</span></a>
                   </li>
                   <li>
                     <a href="contact.html"><span>Contact</span></a>
@@ -76,6 +81,16 @@
             <div class="navbar-brand">
               <a class="logo" href="{% url 'blog-home' %}">Fake Blog</a>
             </div>
+            {% if user.is_authenticated %}
+            <div class="navbar-brand">
+              <a class="logo" href="{% url 'logout' %}">LOGOUT</a>
+            </div>
+
+            {% else %}
+            <div class="navbar-brand">
+              <a class="logo" href="{% url 'login' %}">LOGIN</a>
+            </div>
+            {% endif %}
             <div
               id="menu-open-btn"
               style="width: 40px; height: 40px; cursor: pointer"
@@ -84,13 +99,15 @@
             </div>
           </div>
         </header>
-        <section class="dark hero-wrap js-fullheight" style="height: 625px">
+        <section class="hero-wrap js-fullheight">
           <div class="container px-0" style="padding-top: 80px">
             <div
               class="no-gutters slider-text js-fullheight"
               data-scrollax-parent="true"
             >
-              {% block content %}{% endblock %}
+              {% if messages %} {% for message in messages %}
+              <div class="alert alert-{{ message.tags}}">{{message}}</div>
+              {% endfor %} {% endif %} {% block content %}{% endblock %}
             </div>
           </div>
         </section>
@@ -103,11 +120,13 @@
           setTimeout(function () {
             $("#menu-close-btn").toggleClass("show");
           }, 800);
+          $("body").css({ overflow: "hidden" });
         });
 
         $("#menu-close-btn").click(function () {
           $(this).toggleClass("show");
           $("#main-container").toggleClass("menu-show");
+          $("body").css({ overflow: "auto" });
         });
       });
     </script>

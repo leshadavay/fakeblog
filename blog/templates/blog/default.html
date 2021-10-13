@@ -20,10 +20,16 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link
       rel="stylesheet"
       type="text/css"
       href="{% static 'blog/header.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'blog/style.css' %}"
     />
     <link
       rel="stylesheet"
@@ -81,20 +87,29 @@
             <div class="navbar-brand">
               <a class="logo" href="{% url 'blog-home' %}">Fake Blog</a>
             </div>
-            {% if user.is_authenticated %}
-            <div class="navbar-brand">
-              <a class="logo" href="{% url 'logout' %}">LOGOUT</a>
-            </div>
 
-            {% else %}
-            <div class="navbar-brand">
-              <a class="logo" href="{% url 'login' %}">LOGIN</a>
-            </div>
-            {% endif %}
-            <div
+            <div class="d-flex justify-content-between align-items-center" >            
+           
+             
+               {% if user.is_authenticated %}
+               <div class="navbar-brand">
+                <a href="{% url 'profile' %}"><i class="bi bi-person-circle"></i></a>
+                </div>
+                <div class="navbar-brand">
+                <a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i></a>
+                </div>
+
+                {% else %}
+                <div class="navbar-brand">
+                  <a class="logo" href="{% url 'login' %}">LOGIN</a>
+                </div>
+                {% endif %}
+           
+             <div
               id="menu-open-btn"
               style="width: 40px; height: 40px; cursor: pointer"
             >
+
               <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
             </div>
           </div>
